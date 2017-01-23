@@ -115,7 +115,9 @@ public class SearchSplitFragment extends Fragment {
 
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0);
+
         Glide.with(context).load(R.drawable.plane_splitz).into(imageViewType);
+        textViewType.setText(getString(R.string.aeroplane_splitz));
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -126,20 +128,28 @@ public class SearchSplitFragment extends Fragment {
                 tab.getIcon().setColorFilter(tabIconSelectedColor, PorterDuff.Mode.SRC_IN);
                 switch (tab.getPosition()) {
                     case 0:
-                        textViewType.setText(getString(R.string.aeroplane_splitz));
-                        Glide.with(context).load(R.drawable.plane_splitz).into(imageViewType);
+                        if(tab.getPosition()==0) {
+                            textViewType.setText(getString(R.string.aeroplane_splitz));
+                            Glide.with(context).load(R.drawable.plane_splitz).into(imageViewType);
+                        }
                         break;
                     case 1:
-                        textViewType.setText(R.string.car_splitz);
-                        Glide.with(context).load(R.drawable.car_bg).into(imageViewType);
+                        if(tab.getPosition()==1) {
+                            textViewType.setText(R.string.car_splitz);
+                            Glide.with(context).load(R.drawable.car_bg).into(imageViewType);
+                        }
                         break;
                     case 2:
-                        textViewType.setText(R.string.bus_splitz);
-                        Glide.with(context).load(R.drawable.bus_splitz).into(imageViewType);
+                        if(tab.getPosition()==2) {
+                            textViewType.setText(R.string.bus_splitz);
+                            Glide.with(context).load(R.drawable.bus_splitz).into(imageViewType);
+                        }
                         break;
                     case 3:
-                        textViewType.setText(R.string.boat_splitz);
-                        Glide.with(context).load(R.drawable.boat_split).into(imageViewType);
+                        if(tab.getPosition()==3) {
+                            textViewType.setText(R.string.boat_splitz);
+                            Glide.with(context).load(R.drawable.boat_split).into(imageViewType);
+                        }
                         break;
 
 

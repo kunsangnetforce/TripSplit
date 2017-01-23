@@ -65,6 +65,11 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         MyHolder myHolder = (MyHolder) holder;
         final MyData myData = itemList.get(position);
         myHolder.textViewTime.setText(getFormattedDate(myData.timestamp));
+        if(position%2==0){
+            myHolder.view.setBackgroundColor(ContextCompat.getColor(context,R.color.white));
+        }else {
+            myHolder.view.setBackgroundColor(ContextCompat.getColor(context,R.color.grey));
+        }
         try {
             Glide.with(context).load(myData.image_url).error(R.drawable.ic_error).into(myHolder.imageViewDp);
         } catch (Exception ex) {

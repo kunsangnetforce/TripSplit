@@ -50,7 +50,7 @@
                         android:textStyle="bold" />
 
                     <RelativeLayout
-                        android:layout_width="80dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true">
 
@@ -112,7 +112,7 @@
                         android:textStyle="bold" />
 
                     <RelativeLayout
-                        android:layout_width="80dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true">
 
@@ -194,7 +194,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_toRightOf="@+id/maleButton"
                             android:layout_weight="30"
-                            android:background="@drawable/border_image2"
+                            android:background="@drawable/border_image3"
                             android:text="Female"
                             android:textAllCaps="false"
                             android:textColor="@color/red" />

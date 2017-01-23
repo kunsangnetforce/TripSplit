@@ -80,42 +80,42 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
+                                android:layout_marginTop="10dp"
                                 android:gravity="center"
                                 android:orientation="vertical">
                                 <ImageView
                                     android:id="@+id/imageViewRating1"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_marginTop="6dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginTop="10dp"
                                     android:src="@drawable/ic_star_full" />
 
                                 <ImageView
                                     android:id="@+id/imageViewRating2"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_marginTop="6dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginTop="10dp"
                                     android:src="@drawable/ic_star_full" />
 
                                 <ImageView
                                     android:id="@+id/imageViewRating3"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_marginTop="6dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginTop="10dp"
                                     android:src="@drawable/ic_star_full" />
 
                                 <ImageView
                                     android:id="@+id/imageViewRating4"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_marginTop="6dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginTop="10dp"
                                     android:src="@drawable/ic_star_full" />
 
                                 <ImageView
                                     android:id="@+id/imageViewRating5"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_marginTop="6dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginTop="10dp"
                                     android:src="@drawable/ic_star_outline" />
 
                             </LinearLayout>
@@ -148,6 +148,8 @@
                 android:weightSum="110">
 
                 <LinearLayout
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -158,6 +160,7 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageViewDp"
                         android:layout_width="60dp"
+                        android:visibility="gone"
                         android:layout_height="60dp"
                         android:src="@drawable/car_bg" />
 
@@ -249,7 +252,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
+                android:padding="16dp"
                 android:text="@string/about_me_heading"
                 android:textColor="@color/black"
                 android:textSize="18dp"
@@ -260,8 +263,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:text="@string/about_me_txt"
                 android:textColor="@color/black" />
 
@@ -289,6 +292,7 @@
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
+                android:padding="16dp"
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -297,6 +301,7 @@
             </android.support.v7.widget.RecyclerView>
 
             <TextView
+                android:padding="16dp"
                 android:visibility="gone"
                 android:id="@+id/textViewNoReview"
                 android:layout_width="match_parent"

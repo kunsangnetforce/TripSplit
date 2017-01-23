@@ -90,44 +90,43 @@
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="6dp"
+                                    android:layout_marginTop="10dp"
                                     android:gravity="center"
                                     android:orientation="vertical">
-
                                     <ImageView
                                         android:id="@+id/imageViewRating1"
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:layout_marginTop="6dp"
-                                         />
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="10dp"
+                                        android:src="@drawable/ic_star_full" />
 
                                     <ImageView
                                         android:id="@+id/imageViewRating2"
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:layout_marginTop="6dp"
-                                         />
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="10dp"
+                                        android:src="@drawable/ic_star_full" />
 
                                     <ImageView
                                         android:id="@+id/imageViewRating3"
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:layout_marginTop="6dp"
-                                         />
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="10dp"
+                                        android:src="@drawable/ic_star_full" />
 
                                     <ImageView
                                         android:id="@+id/imageViewRating4"
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:layout_marginTop="6dp"
-                                         />
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="10dp"
+                                        android:src="@drawable/ic_star_full" />
 
                                     <ImageView
                                         android:id="@+id/imageViewRating5"
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:layout_marginTop="6dp"
-                                        />
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_marginTop="10dp"
+                                        android:src="@drawable/ic_star_outline" />
 
                                 </LinearLayout>
                             </LinearLayout>
@@ -183,13 +182,12 @@
                                 <de.hdodenhof.circleimageview.CircleImageView
                                     android:id="@+id/imageViewDp"
                                     android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                 />
+                                    android:layout_height="60dp" />
 
                                 <LinearLayout
-                                    android:layout_marginLeft="4dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginLeft="4dp"
                                     android:orientation="vertical">
 
                                     <LinearLayout
@@ -216,6 +214,7 @@
                                         android:layout_toRightOf="@+id/textviewName"
                                         android:textColor="@color/black"
                                         android:textSize="16dp" />
+
                                     <TextView
                                         android:id="@+id/textViewAddress"
                                         android:layout_width="wrap_content"
@@ -260,7 +259,7 @@
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
+                            android:layout_height="0.5dp"
                             android:background="@color/view_background"></View>
 
                         <RelativeLayout
@@ -272,7 +271,7 @@
                                 android:id="@+id/imageViewType"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                />
+                                android:layout_centerVertical="true" />
 
 
                             <RelativeLayout
@@ -313,23 +312,23 @@
                                     android:id="@+id/textViewSource"
                                     android:layout_width="120dp"
                                     android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
                                     android:ellipsize="end"
                                     android:gravity="center"
                                     android:maxLines="2"
                                     android:padding="3dp"
                                     android:textColor="@color/black"
                                     android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    android:layout_alignParentTop="true"
-                                    android:layout_alignParentLeft="true"
-                                    android:layout_alignParentStart="true" />
+                                    android:textStyle="bold" />
                             </RelativeLayout>
 
                         </RelativeLayout>
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
+                            android:layout_height="0.5dp"
                             android:background="@color/view_background"></View>
 
                         <TextView
@@ -352,30 +351,42 @@
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
+                            android:layout_height="0.5dp"
                             android:background="@color/view_background"></View>
 
 
                         <RelativeLayout
                             android:id="@+id/reviewlayout"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="15dp">
+                            android:layout_height="60dp">
 
                             <TextView
+                                android:layout_marginLeft="16dp"
                                 android:id="@+id/textViewReview"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
                                 android:text="Review"
                                 android:textColor="@color/red"
                                 android:textStyle="bold" />
 
+                            <com.netforceinfotech.tripsplit.general.VerticalTextView
+                                android:id="@+id/textViewTime"
+                                android:layout_width="20dp"
+                                android:text="REVIEW"
+                                android:textSize="11sp"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentRight="true"
+                                android:layout_gravity="center"
+                                android:background="@color/darkpurple"
+                                android:gravity="bottom|center_horizontal"
+                                android:textColor="@color/colorAccent" />
 
                         </RelativeLayout>
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
+                            android:layout_height="0.5dp"
                             android:background="@color/view_background"></View>
 
                         <LinearLayout
@@ -519,7 +530,7 @@
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
+                                android:layout_height="0.5dp"
                                 android:background="@color/view_background"></View>
 
 
@@ -589,7 +600,7 @@
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
+                                android:layout_height="0.5dp"
                                 android:background="@color/view_background"></View>
 
 
@@ -753,7 +764,7 @@
 
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="2dp"
+                                android:layout_height="0.5dp"
                                 android:background="@color/view_background"></View>
 
                             <RelativeLayout
