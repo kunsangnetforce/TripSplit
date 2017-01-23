@@ -1,0 +1,112 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:hedgehog="http://schemas.android.com/apk/res-auto"
+    android:background="#F3F4F6"
+    tools:context="com.netforceinfotech.tripsplit.dashboard.NavigationFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true">
+
+
+        <LinearLayout
+            android:id="@+id/linearheader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F3F4F6"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/header"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+
+                >
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageViewDp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    />
+
+                <TextView
+                    android:id="@+id/textviewCountry"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginRight="4dp"
+                    android:background="@drawable/circular_bg_fill"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/white" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textviewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="5dp"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.hedgehog.ratingbar.RatingBar
+                    android:gravity="center"
+                    android:id="@+id/ratingbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="6dp"
+                    hedgehog:starCount="5"
+                    hedgehog:clickable="false"
+                    android:isIndicator="true"
+                    hedgehog:starEmpty="@drawable/ic_star_outline"
+                    hedgehog:starFill="@drawable/ic_star_full"
+                    hedgehog:starHalf="@drawable/ic_half_star"
+                    hedgehog:starImageHeight="25dp"
+                    hedgehog:starImageWidth="25dp"
+                    hedgehog:starImagePadding="8dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/recyclerMyGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearheader"
+            android:background="#F3F4F6"
+
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recyclerMyGroup"
+            android:background="@color/white"
+            android:orientation="vertical"></LinearLayout>
+    </RelativeLayout>
+</ScrollView>

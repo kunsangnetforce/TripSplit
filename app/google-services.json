@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "424543582797",
+    "firebase_url": "https://trip-split.firebaseio.com",
+    "project_id": "trip-split",
+    "storage_bucket": "trip-split.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424543582797:android:f5d42da2821e7bb0",
+        "android_client_info": {
+          "package_name": "com.netforceinfotech.tripsplit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424543582797-gs69l13vbcl6738h8t9sq1ni1p3k9ldg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.netforceinfotech.tripsplit",
+            "certificate_hash": "48C99B97A3C86D24F9C39063EC52509DD0741CD0"
+          }
+        },
+        {
+          "client_id": "424543582797-alst8ovti5qcr36a37b8gl4674k9re3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5naJrJUmvbB_mGCnqxVADXpmLs0_IkP0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424543582797-alst8ovti5qcr36a37b8gl4674k9re3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

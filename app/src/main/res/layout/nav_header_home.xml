@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#F3F4F6"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+
+        >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="110dp"
+        />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/small_circle"
+            />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Ryan"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#000000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+
+
+    <io.techery.properratingbar.ProperRatingBar
+        android:id="@+id/lowerRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_gravity="center_horizontal"
+        app:prb_defaultRating="4"
+        app:prb_tickNormalDrawable="@drawable/star_outlineicon"
+        app:prb_tickSelectedDrawable="@drawable/star_icon"
+        android:layout_alignParentRight="true"
+        app:prb_totalTicks="5"
+        app:prb_clickable="true"
+        android:layout_below="@+id/relativeedit"
+        app:prb_tickSpacing="0dp"
+        android:layout_marginBottom="15dp"
+        />
+
+
+
+
+</LinearLayout>

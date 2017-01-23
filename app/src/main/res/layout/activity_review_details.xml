@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+   >
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_bar_custom"
+            />
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/review_text"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imageViewDp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            app:civ_border_width="0dp"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anika"
+            android:textColor="@color/black"
+            android:layout_below="@+id/imageViewDp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            />
+
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="March 16"
+            android:textColor="@color/colorPrimary"
+            android:layout_below="@+id/name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+
+            />
+
+
+        <io.techery.properratingbar.ProperRatingBar
+            android:id="@+id/lowerRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_centerHorizontal="true"
+            app:prb_defaultRating="3"
+            app:prb_tickNormalDrawable="@drawable/star_outlineicon"
+            app:prb_tickSelectedDrawable="@drawable/star_icon"
+            app:prb_totalTicks="5"
+            app:prb_clickable="true"
+            app:prb_tickSpacing="0dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/date"
+
+            />
+
+
+        <TextView
+            android:id="@+id/review_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Review"
+            android:textColor="@color/black"
+            android:layout_below="@+id/lowerRatingBar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:background="@color/background"
+        android:padding="10dp"
+        >
+
+
+      <LinearLayout
+           android:id="@+id/linearlayout"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+
+          >
+
+          <de.hdodenhof.circleimageview.CircleImageView
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/profile_image2"
+              android:layout_width="60dp"
+              android:layout_height="60dp"
+              android:layout_centerHorizontal="true"
+              android:layout_margin="5dp"
+              app:civ_border_width="0dp"
+              />
+
+      </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/linearlayout"
+
+            android:orientation="vertical"
+            >
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Leteral Legends"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@+id/name"
+
+                android:layout_marginTop="2dp"
+
+                />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_me_txt"
+                android:textColor="@color/black"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+
+                />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

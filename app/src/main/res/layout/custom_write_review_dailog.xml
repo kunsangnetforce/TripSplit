@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    >
+
+    <RelativeLayout
+        android:id="@+id/relativelayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    <LinearLayout
+        android:id="@+id/linearlayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            app:civ_border_width="0dp"
+            />
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/linearlayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/linearlayout1"
+
+        android:layout_centerVertical="true"
+        >
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anika"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            />
+
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="March 16"
+            android:textColor="@color/red"
+            android:layout_below="@+id/name"
+            android:textSize="18dp"
+            />
+
+
+    </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <io.techery.properratingbar.ProperRatingBar
+        android:id="@+id/lowerRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_centerHorizontal="true"
+        app:prb_defaultRating="3"
+        app:prb_tickNormalDrawable="@drawable/star_outlineicon"
+        app:prb_tickSelectedDrawable="@drawable/star_icon"
+        app:prb_totalTicks="5"
+        app:prb_clickable="true"
+        app:prb_tickSpacing="0dp"
+        android:layout_below="@+id/relativelayout1"
+        />
+
+
+    <EditText
+        android:id="@+id/editTextreview"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/ic_redborder_chatbox"
+        android:layout_below="@+id/lowerRatingBar"
+        />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTextreview"
+        android:textColor="@color/red"
+
+        />
+
+</RelativeLayout>

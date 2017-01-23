@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_preferences"
+            android:icon="@drawable/ic_prefrence"
+            android:title="Preferences" />
+        <item
+            android:id="@+id/nav_invite_friends"
+            android:icon="@drawable/ic_invite_frnd"
+            android:title="Invite Friends" />
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search"
+            android:title="Search Split" />
+        <item
+            android:id="@+id/nav_create_trip"
+            android:icon="@drawable/ic_create_trip"
+            android:title="Create Trip" />
+
+        <item
+            android:id="@+id/nav_message"
+            android:icon="@drawable/ic_message"
+            android:title="Message" />
+
+
+    </group>
+
+    <group
+        android:checkableBehavior="single"
+        >
+
+        <item
+            android:id="@+id/nav_group"
+            android:icon="@drawable/ic_message"
+            android:title="Message" />
+
+
+
+    </group>
+
+    <group
+        android:checkableBehavior="single"
+        ></group>
+
+
+    <group
+        android:checkableBehavior="single"
+        ></group>
+</menu>

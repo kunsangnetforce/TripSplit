@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_group"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.netforceinfotech.tripsplit.group.CreateGroupActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/app_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearlayoutSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <EditText
+
+                    android:id="@+id/editTextGroupTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="37dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/editext_background"
+                    android:gravity="center_vertical"
+                    android:hint="@string/group_title"
+                    android:inputType="textCapWords"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorAccent"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/textViewCountry"
+                        android:layout_width="0dp"
+                        android:layout_height="37dp"
+                        android:layout_margin="16dp"
+                        android:layout_weight="50"
+                        android:background="@drawable/editext_background"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/country"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editTextCity"
+                        android:layout_width="0dp"
+                        android:layout_height="37dp"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="16dp"
+                        android:layout_weight="50"
+                        android:background="@drawable/editext_background"
+                        android:gravity="center_vertical"
+                        android:hint="@string/city"
+                        android:inputType="textPostalAddress"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="@color/colorAccent"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/editext_background"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+
+                    android:text="@string/category"
+                    android:textColor="@color/colorAccent" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonAddImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/round_border"
+                android:drawableRight="@drawable/ic_chevron_primary_down"
+                android:gravity="left|center_vertical"
+                android:padding="5dp"
+                android:text="@string/add_image"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_margin="16dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/buttonCreateGroup"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/editext_background_filled"
+                android:text="@string/create_group"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

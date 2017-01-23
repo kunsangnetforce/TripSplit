@@ -1,0 +1,91 @@
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorPrimary"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:theme="@style/AppTheme.AppBarOverlay"
+    app:titleTextAppearance="@style/Toolbar.TitleText"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:id="@+id/linearlayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-20dp"
+            >
+
+
+            <ImageView
+                android:id="@+id/image_appicon"
+                android:padding="10dp"
+                android:background="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_splittrip_textlogo"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/homebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+
+            >
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_home"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:padding="5dp"
+                android:textAllCaps="true"
+                android:layout_marginTop="5dp"
+                />
+
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/logoutbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            >
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:text="LOGOUT"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:padding="5dp"
+                android:background="@color/colorPrimaryTransparent"
+                android:textAllCaps="true"
+                android:layout_marginTop="5dp"
+                />
+
+        </FrameLayout>
+    </RelativeLayout>
+
+</android.support.v7.widget.Toolbar>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+
+
+
+    <RelativeLayout
+
+        android:id="@+id/relativelayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        >
+    <TextView
+        android:id="@+id/textview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/red"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pax"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/textview1"
+        />
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            >
+
+    <Button
+        android:id="@+id/imageview1"
+        android:layout_width="40dp"
+        android:layout_height="27dp"
+        android:background="@drawable/border_image"
+        android:text="+"
+        android:textColor="@color/red"
+        android:textSize="18dp"
+        />
+        <Button
+            android:id="@+id/imageview2"
+            android:layout_width="40dp"
+            android:layout_height="27dp"
+            android:background="@drawable/border_image2"
+            android:layout_toRightOf="@+id/imageview1"
+            android:text="-"
+            android:textColor="@color/red"
+            android:textSize="18dp"
+            />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/flight_view_background"
+        android:layout_below="@+id/relativelayout1"
+        ></View>
+
+</RelativeLayout>

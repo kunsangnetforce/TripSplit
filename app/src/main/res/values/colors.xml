@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#EE4039</color>
+    <color name="colorPrimaryTransparent">#00000000</color>
+    <color name="colorPrimaryDark">#b4312b</color>
+    <color name="colorAccent">#EE4039</color>
+    <color name="black">#000000</color>
+    <color name="view_background">#E6E7E9</color>
+    <color name="background">#FFF2EFEF</color>
+    <color name="flight_view_background">#9E9E9E</color>
+    <color name="grey">#d1cece</color>
+    <color name="grey_transparent">#b0cfcdcd</color>
+    <color name="white">#ffffff</color>
+    <color name="greentranparent">#a463cc55</color>
+    <color name="red">#EE4039</color>
+    <color name="selected_menu_back">#e5e5e5</color>
+    <color name="polyline_color">#43a047</color>
+    <color name="colorPrimaryLight">#f16d68</color>
+    <color name="darkpurple">#20102e</color>
+    <color name="darkgreen">#0c961c</color>
+</resources>
