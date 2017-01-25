@@ -126,7 +126,10 @@
         <activity android:name=".supports.SupportActivity" />
         <activity android:name=".profile.sendmail.SendMailActivity" />
         <activity android:name=".profile.myprofile.triplist.TripListActivity" />
-        <activity android:name=".search.ReviewActivity"></activity>
+        <activity android:name=".search.review.ReviewActivity" />
+        <activity android:name=".preference.PrivacyPolicyActivity" />
+        <activity android:name=".preference.TermsAndConditionActivity" />
+        <activity android:name=".mytrip.EditTripActivity"></activity>
     </application>
 
 </manifest>

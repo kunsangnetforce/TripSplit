@@ -313,7 +313,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    public  void requestPermission(String strPermission,int perCode,Context _c,Activity _a)
+    public  void requestPermission(String strPermission,int perCode,Context _c,EditTripActivity _a)
     {
 
         if (ActivityCompat.shouldShowRequestPermissionRationale(_a, strPermission))
@@ -327,7 +327,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    public static boolean checkPermission(String strPermission,Context _c,Activity _a){
+    public static boolean checkPermission(String strPermission,Context _c,EditTripActivity _a){
         int result = ContextCompat.checkSelfPermission(_c, strPermission);
         if (result == PackageManager.PERMISSION_GRANTED){
 

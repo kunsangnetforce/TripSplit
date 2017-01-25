@@ -7,85 +7,140 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.netforceinfotech.tripsplit.search.ReviewActivity">
+    tools:context="com.netforceinfotech.tripsplit.search.review.ReviewActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/app_bar" />
 
-    <LinearLayout
-        android:id="@+id/linearheader"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#F3F4F6"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:id="@+id/header"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-
-            >
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageViewDp"
-                android:layout_width="120dp"
-                android:layout_height="120dp" />
-
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/textviewName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:padding="5dp"
-            android:text=""
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#000000"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textViewReviewDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="sadfasdf" />
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <com.hedgehog.ratingbar.RatingBar
-                android:id="@+id/ratingbar"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:text="Reviews"
+                    android:textColor="@color/darkpurple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:src="@drawable/ic_play"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/linearheader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/header"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="40dp"
+
+                    >
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageViewDp"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textviewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/darkpurple"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:padding="6dp"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/textViewDob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                     />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.hedgehog.ratingbar.RatingBar
+                        android:id="@+id/ratingbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"
+                        android:isIndicator="true"
+                        hedgehog:clickable="false"
+                        hedgehog:starCount="5"
+                        hedgehog:starEmpty="@drawable/ic_star_outline"
+                        hedgehog:starFill="@drawable/ic_star_full"
+                        hedgehog:starHalf="@drawable/ic_half_star"
+                        hedgehog:starImageHeight="25dp"
+                        hedgehog:starImagePadding="8dp"
+                        hedgehog:starImageWidth="25dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="32dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp"
+                android:textColor="@color/darkpurple"
+                android:text="REVIEWS" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textViewNoReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:isIndicator="true"
-                hedgehog:clickable="false"
-                hedgehog:starCount="5"
-                hedgehog:starEmpty="@drawable/ic_star_outline"
-                hedgehog:starFill="@drawable/ic_star_full"
-                hedgehog:starHalf="@drawable/ic_half_star"
-                hedgehog:starImageHeight="25dp"
-                hedgehog:starImagePadding="8dp"
-                hedgehog:starImageWidth="25dp" />
+                android:padding="16dp"
+                android:text="No Review Yet"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:visibility="gone" />
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="REVIEW" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/app_bar" />
 
 </LinearLayout>

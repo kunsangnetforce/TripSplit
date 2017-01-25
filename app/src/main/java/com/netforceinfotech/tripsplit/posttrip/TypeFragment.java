@@ -537,6 +537,7 @@ public class TypeFragment extends Fragment implements View.OnClickListener, Time
                         .setMultipartParameter("user_id", userSessionManager.getUserId())
                         .setMultipartParameter("type", type)
                         .setMultipartParameter("pax", textviewPax.getText().toString().trim())
+                        .setMultipartParameter("space", textviewSpace.getText().toString().trim())
                         .setMultipartParameter("group", group)
                         .setMultipartParameter("age_group_upper", upperLimit)
                         .setMultipartParameter("age_group_lower", lowerLimit)
@@ -552,6 +553,8 @@ public class TypeFragment extends Fragment implements View.OnClickListener, Time
                         .setMultipartParameter("eta", getServerFormatDate(textviewETA.getText().toString()))
                         .setMultipartParameter("return_etd", getServerFormatDate(textViewReturnETD.getText().toString()))
                         .setMultipartParameter("return_eta", getServerFormatDate(textViewReturnETA.getText().toString()))
+                        .setMultipartParameter("timezone", timezone)
+
                         .setMultipartParameter("iteinerary", editTextItenarary.getText().toString().trim())
                         .setMultipartParameter("totalcost", editTextTotalCost.getText().toString())
                         //currency
@@ -1124,7 +1127,6 @@ public class TypeFragment extends Fragment implements View.OnClickListener, Time
                     double lat = data.getDoubleExtra("lat", 0);
                     double lon = data.getDoubleExtra("lon", 0);
                     String address = data.getStringExtra("address");
-                    this.destinationAddress = destinationAddress;
                     textViewDestinationAddress.setText(address);
                     destinationLatLang = new LatLng(lat, lon);
                     try {

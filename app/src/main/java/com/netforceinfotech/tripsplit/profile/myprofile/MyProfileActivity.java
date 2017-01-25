@@ -175,7 +175,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
 
     private void setupRatingImage(float ratingFloat) {
         int ratingInt = (int) ratingFloat;
-        float ramainingFloat = ratingFloat = ratingInt;
+        float ramainingFloat = ratingFloat - ratingInt;
         switch (ratingInt) {
             case 1:
                 imageViewRating1.setImageResource(R.drawable.ic_star_full);
@@ -437,6 +437,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
                                          Log.i("result", result.toString());
                                          if (result.get("status").getAsString().equalsIgnoreCase("success")) {
                                              showMessage("Successfully reviewed");
+                                             getUserInfo(userId);
                                          }
 
                                      } else {

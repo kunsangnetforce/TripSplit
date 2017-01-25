@@ -36,6 +36,7 @@ import com.netforceinfotech.tripsplit.home.HomeFragment;
 import com.netforceinfotech.tripsplit.mysplitz.MySplitzFragment;
 import com.netforceinfotech.tripsplit.profile.editprofile.EditPofileFragment;
 import com.netforceinfotech.tripsplit.R;
+import com.netforceinfotech.tripsplit.profile.myprofile.MyProfileActivity;
 import com.netforceinfotech.tripsplit.search.SearchSplitFragment;
 import com.netforceinfotech.tripsplit.general.UserSessionManager;
 import com.netforceinfotech.tripsplit.group.GroupFragment;
@@ -128,10 +129,10 @@ public class NavigationFragment extends Fragment implements RecyclerAdapterDrawe
             String dob = jsonObject.get("dob").getAsString();
             String country = jsonObject.get("country").getAsString();
             String rating;
-            try{
+            try {
                 rating = jsonObject.get("rating").getAsString();
-            }catch (Exception ex){
-                rating="3";
+            } catch (Exception ex) {
+                rating = "3";
             }
 
             String country_code = jsonObject.get("country_code").getAsString();
@@ -153,6 +154,7 @@ public class NavigationFragment extends Fragment implements RecyclerAdapterDrawe
     }
 
     private void initView() {
+        view.findViewById(R.id.header).setOnClickListener(this);
         ratingBar = (RatingBar) view.findViewById(R.id.ratingbar);
         ratingBar.setStar(3.5f);
         userSessionManager = new UserSessionManager(context);
@@ -429,7 +431,24 @@ public class NavigationFragment extends Fragment implements RecyclerAdapterDrawe
         switch (v.getId()) {
 
             case R.id.header:
-                showMessage("header");
+                Intent intent = new Intent(context, MyProfileActivity.class);
+                /*
+                *  userName = bundle.getString("name");
+        userId = bundle.getString("user_id");
+        image_url = bundle.getString("image_url");
+        try {
+            dob = bundle.getString("dob");
+        } catch (Exception ex) {
+            dob = "0000-00-00";
+
+        }
+                * */
+                Bundle bundle = new Bundle();
+                bundle.putString("name", userSessionManager.getName());
+                bundle.putString("user_id", userSessionManager.getUserId());
+                bundle.putString("image_url", userSessionManager.getProfileImage());
+                intent.putExtras(bundle);
+                startActivity(intent);
                 break;
         }
     }

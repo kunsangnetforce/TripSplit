@@ -55,8 +55,14 @@ public class MyTripFragment extends Fragment {
         setuptoolbar();
         initView(view);
         setupRecyclerView(view);
-        getData();
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getData();
     }
 
     private void initView(View view) {
@@ -121,6 +127,8 @@ public class MyTripFragment extends Fragment {
             MyData myData = new MyData(trip_id, image, source, destination, departure_date, itinerary);
             if (!myDatas.contains(myData)) {
                 myDatas.add(myData);
+            } else {
+                myDatas.set(i, myData);
             }
         }
         myAdapter.notifyDataSetChanged();

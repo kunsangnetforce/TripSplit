@@ -2,6 +2,7 @@ package com.netforceinfotech.tripsplit.preference;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.kyleduo.switchbutton.SwitchButton;
+import com.netforceinfotech.tripsplit.dashboard.DashboardActivity;
 import com.netforceinfotech.tripsplit.home.HomeFragment;
 import com.netforceinfotech.tripsplit.R;
 import com.netforceinfotech.tripsplit.general.UserSessionManager;
@@ -45,6 +47,7 @@ public class PreferenceFragment extends Fragment implements View.OnClickListener
     Button buttonDeleteAccount;
     private MaterialDialog progressDialog;
     SwitchButton switchButtonLogout, switchbuttonLoop, switchbuttonMessage, switchbuttonEmail, switchbuttonVibration;
+    private Intent intent;
 
     public PreferenceFragment() {
         // Required empty public constructor
@@ -64,6 +67,10 @@ public class PreferenceFragment extends Fragment implements View.OnClickListener
     }
 
     private void initview(View view) {
+
+        view.findViewById(R.id.relativeLayoutShare).setOnClickListener(this);
+        view.findViewById(R.id.relativeLayoutTnC).setOnClickListener(this);
+        view.findViewById(R.id.relativeLayoutPrivacyPolicy).setOnClickListener(this);
         switchbuttonEmail = (SwitchButton) view.findViewById(R.id.switchbuttonEmail);
         switchbuttonLoop = (SwitchButton) view.findViewById(R.id.switchbuttonLoop);
         switchbuttonMessage = (SwitchButton) view.findViewById(R.id.switchbuttonMessage);
@@ -258,7 +265,27 @@ public class PreferenceFragment extends Fragment implements View.OnClickListener
             case R.id.buttonDeleteAccount:
                 showDeleteAccountPopUp();
                 break;
+            case R.id.relativeLayoutPrivacyPolicy:
+                intent = new Intent(context, PrivacyPolicyActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.relativeLayoutTnC:
+                intent = new Intent(context, TermsAndConditionActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.relativeLayoutShare:
+                shareData();
+                break;
         }
+    }
+
+    private void shareData() {
+        String shareBody = getString(R.string.download_tripsplit);
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.shareit)));
     }
 
     private void deleteAccount() {

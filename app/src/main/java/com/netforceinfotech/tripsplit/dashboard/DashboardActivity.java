@@ -74,6 +74,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         context = this;
         getPermission();
         userSessionManager = new UserSessionManager(context);
+        if (!userSessionManager.getUserId().equalsIgnoreCase("")) {
+            Log.i("regId", userSessionManager.getRegId());
+            sendRegistrationToServer(userSessionManager.getRegId());
+        }
+
         setupToolbar();
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         setupNavigationCustom();
@@ -386,6 +391,37 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                     }
                 });
 
+    }
+
+    private void sendRegistrationToServer(final String token) {
+        // TODO: Implement this method to send token to your app server.
+        //services.php?opt=updateregid&user_id=11&reg_id=11
+        String url = getResources().getString(R.string.url);
+        String pushurl = "services.php?opt=updateregid&user_id=" + userSessionManager.getUserId() + "&reg_id=" + token;
+        Log.i(TAG, pushurl);
+        Log.i(TAG, token);
+        Ion.with(getApplicationContext())
+                .load(url + pushurl)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+
+                        if (result == null) {
+                            Log.i(TAG, "not sending");
+                        } else {
+
+                            String status = result.get("status").getAsString().toLowerCase();
+                            if (status.equalsIgnoreCase("success")) {
+                                Log.i(TAG, "successfully registered");
+
+                            } else {
+                                Log.i(TAG, "successfully registered :" + token);
+                            }
+                        }
+
+                    }
+                });
     }
 
     private void showReviewPopUp(String name, String dob, String imageUrl, final String trip_id, String etd, String destination, String source) {

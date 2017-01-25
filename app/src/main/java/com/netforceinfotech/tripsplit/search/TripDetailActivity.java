@@ -19,14 +19,17 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.netforceinfotech.tripsplit.R;
 import com.netforceinfotech.tripsplit.general.UserSessionManager;
 import com.netforceinfotech.tripsplit.message.message_detail.MessageDetailActivity;
+import com.netforceinfotech.tripsplit.mytrip.EditTripActivity;
 import com.netforceinfotech.tripsplit.profile.myprofile.MyProfileActivity;
 import com.netforceinfotech.tripsplit.profile.sendmail.SendMailActivity;
+import com.netforceinfotech.tripsplit.search.review.ReviewActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,7 +41,7 @@ public class TripDetailActivity extends AppCompatActivity implements View.OnClic
 
     Context context;
     RelativeLayout reviewlayout;
-    Button buttonBookIt;
+    Button buttonBookIt, buttonEditTrip;
     LinearLayout linearLayoutReturn;
     TextView textViewETDReturn, textViewETAReturn, textViewCountryCode, textViewDateCreated, textViewName, textViewAge, textViewAddress, textViewSource, textViewDestination, textViewAboutMe, textViewETD, textViewETA, textViewSpace, textViewDate, textViewPax, textViewAgeGroup, textViewTripSplit, textViewItenerary, textViewTotalCost, textViewYourShare;
     ImageView imageViewDp, imageViewStar1, imageViewStar2, imageViewStar3, imageViewStar4, imageViewStar5, imageViewEmail, imageViewMessage, imageViewType, imageViewTrip, imageViewRating1, imageViewRating2, imageViewRating3, imageViewRating4, imageViewRating5;
@@ -54,8 +57,10 @@ public class TripDetailActivity extends AppCompatActivity implements View.OnClic
     private String dob = "0000-00-00";
     private boolean mysplit = false;
     private RelativeLayout relativeLayoutYourshare;
+    String jsonResult;
 
     private void initView() {
+        buttonEditTrip = (Button) findViewById(R.id.buttonEditTrip);
         imageViewRating1 = (ImageView) findViewById(R.id.imageViewRating1);
         imageViewRating2 = (ImageView) findViewById(R.id.imageViewRating2);
         imageViewRating3 = (ImageView) findViewById(R.id.imageViewRating3);
@@ -74,6 +79,7 @@ public class TripDetailActivity extends AppCompatActivity implements View.OnClic
             buttonBookIt.setVisibility(View.GONE);
         }
         buttonBookIt.setOnClickListener(this);
+        buttonEditTrip.setOnClickListener(this);
         relativeLayoutYourshare = (RelativeLayout) findViewById(R.id.relativeLayoutYourshare);
         linearLayoutReturn = (LinearLayout) findViewById(R.id.linearLayoutReturn);
         textViewETDReturn = (TextView) findViewById(R.id.textViewETDReturn);
@@ -121,13 +127,27 @@ public class TripDetailActivity extends AppCompatActivity implements View.OnClic
         } catch (Exception ex) {
 
         }
-        setupToolBar("Trip Detail");
+        setupToolBar("Trip Details");
         userSessionManager = new UserSessionManager(context);
         initView();
-        getTripDetail(trip_id);
+        try {
+            if (bundle.getBoolean("edit")) {
+                buttonBookIt.setVisibility(View.GONE);
+                buttonEditTrip.setVisibility(View.VISIBLE);
+            }
+        } catch (Exception ex) {
+
+        }
 
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getTripDetail(trip_id);
+
+    }
 
     private void setupToolBar(String app_name) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -171,7 +191,7 @@ public class TripDetailActivity extends AppCompatActivity implements View.OnClic
                                 JsonObject data = result.getAsJsonObject("data");
                                 JsonObject my_splitz = data.getAsJsonObject("my_splitz");
                                 setupTripDetail(my_splitz);
-
+                                jsonResult = result.toString();
                             }
 
                         }
@@ -218,9 +238,12 @@ public class TripDetailActivity extends AppCompatActivity implements View.OnClic
             if (id.equalsIgnoreCase(userSessionManager.getUserId())) {
                 relativeLayoutYourshare.setVisibility(View.GONE);
                 buttonBookIt.setVisibility(View.GONE);
+
+
             } else {
                 buttonBookIt.setVisibility(View.VISIBLE);
                 relativeLayoutYourshare.setVisibility(View.VISIBLE);
+
             }
         }
         username = my_splitz.get("username").getAsString();
@@ -415,6 +438,26 @@ public class TripDetailActivity extends AppCompatActivity implements View.OnClic
                 showConfirmationPopUp();
                 break;
             case R.id.reviewlayout:
+                intent = new Intent(context, ReviewActivity.class);
+                bundle = new Bundle();
+                bundle.putString("image_url", profile_image);
+                bundle.putString("dob", dob);
+                bundle.putString("name", username);
+                bundle.putString("user_id", userId);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                break;
+            case R.id.buttonEditTrip:
+                if (jsonResult == null) {
+                    showMessage("No data available... please load trip again!!!");
+                    return;
+                }
+                intent = new Intent(context, EditTripActivity.class);
+                bundle = new Bundle();
+                bundle.putString("jsonResult", jsonResult);
+                bundle.putString("tour_id", trip_id);
+                intent.putExtras(bundle);
+                startActivity(intent);
                 break;
 
 
@@ -488,8 +531,16 @@ public class TripDetailActivity extends AppCompatActivity implements View.OnClic
                                 finish();
                                 showMessage("Ride booked");
                             } else {
+
                                 if (status.equalsIgnoreCase("Already Booked")) {
                                     showMessage("Trip already booked");
+
+                                } else if (status.equalsIgnoreCase("Failed")) {
+                                    JsonArray data = result.getAsJsonArray("data");
+                                    JsonObject jsonObject = data.get(0).getAsJsonObject();
+                                    String msg = jsonObject.get("msg").getAsString();
+                                    showMessage(msg);
+                                    return;
 
                                 } else {
                                     showMessage("something went wrong");
