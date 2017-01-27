@@ -82,7 +82,7 @@ or Search Splitz….
     <string name="search_spliz">Search Splitz</string>
     <string name="post_trip">Post Trip</string>
     <string name="my_splitz">My Splitz</string>
-    <string name="my_trip">My Trip</string>
+    <string name="my_trip">My Tripz</string>
     <string name="messages">Messages</string>
     <string name="dummy">dummy</string>
     <string name="lorem_description">"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</string>
@@ -504,4 +504,8 @@ Given that Trip Sharers are required to ensure valid insurance to cover for a Tr
 These terms shall be governed by the law of Great Britain and any disputes arising in relation to these terms shall be subject to the jurisdiction therein.
         "</string>
     <string name="download_tripsplit">Download Trip split app</string>
+    <string name="logout">LOGOUT</string>
+    <string name="appdone">I have done what I need to do do</string>
+    <string name="dontlike">"I didn't like the experience"</string>
+    <string name="irrelevant">"Didn't find what I was looking for"</string>
 </resources>

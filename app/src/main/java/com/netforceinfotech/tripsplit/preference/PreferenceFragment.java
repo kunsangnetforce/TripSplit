@@ -16,14 +16,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
 import com.facebook.login.LoginManager;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.hedgehog.ratingbar.RatingBar;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.kyleduo.switchbutton.SwitchButton;
@@ -32,10 +38,15 @@ import com.netforceinfotech.tripsplit.home.HomeFragment;
 import com.netforceinfotech.tripsplit.R;
 import com.netforceinfotech.tripsplit.general.UserSessionManager;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PreferenceFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+    LinearLayout linearlayoutDone, linearLayoutDontLike, linearLayoutIrrelevant;
+    RadioButton radioDone, radioDontlike, radioIrrelevant;
+    ImageView imageViewDone, imageViewDontlike, imageViewIrrelevant;
 
     String TAG = "klog";
     Context context;
@@ -48,6 +59,8 @@ public class PreferenceFragment extends Fragment implements View.OnClickListener
     private MaterialDialog progressDialog;
     SwitchButton switchButtonLogout, switchbuttonLoop, switchbuttonMessage, switchbuttonEmail, switchbuttonVibration;
     private Intent intent;
+    private float reviewRating = -1;
+    private String deleteReview = "";
 
     public PreferenceFragment() {
         // Required empty public constructor
@@ -67,7 +80,10 @@ public class PreferenceFragment extends Fragment implements View.OnClickListener
     }
 
     private void initview(View view) {
-
+        progressDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.progress_dialog)
+                .content(R.string.please_wait)
+                .progress(true, 0).build();
         view.findViewById(R.id.relativeLayoutShare).setOnClickListener(this);
         view.findViewById(R.id.relativeLayoutTnC).setOnClickListener(this);
         view.findViewById(R.id.relativeLayoutPrivacyPolicy).setOnClickListener(this);
@@ -94,10 +110,7 @@ public class PreferenceFragment extends Fragment implements View.OnClickListener
             }
         });
 
-        progressDialog = new MaterialDialog.Builder(getActivity())
-                .title(R.string.progress_dialog)
-                .content(R.string.please_wait)
-                .progress(true, 0).build();
+
         range = userSessionManager.getSearchRadius();
         buttonDeleteAccount = (Button) view.findViewById(R.id.buttonDeleteAccount);
         buttonDeleteAccount.setOnClickListener(this);
@@ -276,6 +289,16 @@ public class PreferenceFragment extends Fragment implements View.OnClickListener
             case R.id.relativeLayoutShare:
                 shareData();
                 break;
+            case R.id.linearlayoutIrrelevant:
+                radioIrrelevant.performClick();
+                break;
+            case R.id.linearlayoutDone:
+                radioDone.performClick();
+                break;
+
+            case R.id.linearlayoutDidnotLike:
+                radioDontlike.performClick();
+                break;
         }
     }
 
@@ -296,6 +319,8 @@ public class PreferenceFragment extends Fragment implements View.OnClickListener
         Log.i(TAG, pushurl);
         Ion.with(context)
                 .load(url + pushurl)
+                .setBodyParameter("review", deleteReview)
+                .setBodyParameter("rating", reviewRating + "")
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override
@@ -354,7 +379,52 @@ public class PreferenceFragment extends Fragment implements View.OnClickListener
 
 
     private void showDeleteAccountPopUp() {
-        new MaterialDialog.Builder(context)
+        final MaterialDialog deleteAccount = new MaterialDialog.Builder(getActivity())
+                .customView(R.layout.delete_account, false)
+                .show();
+
+        deleteAccount.setCanceledOnTouchOutside(false);
+        RatingBar ratingBar = (RatingBar) deleteAccount.findViewById(R.id.ratingbar);
+        ratingBar.setOnRatingChangeListener(new RatingBar.OnRatingChangeListener() {
+            @Override
+            public void onRatingChange(float RatingCount) {
+                reviewRating = RatingCount;
+            }
+        });
+        imageViewDone = (ImageView) deleteAccount.findViewById(R.id.imageViewDone);
+        imageViewDontlike = (ImageView) deleteAccount.findViewById(R.id.imageViewDontlike);
+        imageViewIrrelevant = (ImageView) deleteAccount.findViewById(R.id.imageViewIrrelevant);
+        radioDone = (RadioButton) deleteAccount.findViewById(R.id.radioDone);
+        radioDontlike = (RadioButton) deleteAccount.findViewById(R.id.radioDidnotLike);
+        radioIrrelevant = (RadioButton) deleteAccount.findViewById(R.id.radioIrrelevent);
+        radioDone.setOnCheckedChangeListener(this);
+        radioDontlike.setOnCheckedChangeListener(this);
+        radioIrrelevant.setOnCheckedChangeListener(this);
+        linearlayoutDone = (LinearLayout) deleteAccount.findViewById(R.id.linearlayoutDone);
+        linearLayoutDontLike = (LinearLayout) deleteAccount.findViewById(R.id.linearlayoutDidnotLike);
+        linearLayoutIrrelevant = (LinearLayout) deleteAccount.findViewById(R.id.linearlayoutIrrelevant);
+        linearlayoutDone.setOnClickListener(this);
+        linearLayoutDontLike.setOnClickListener(this);
+        linearLayoutIrrelevant.setOnClickListener(this);
+        linearlayoutDone.performClick();
+        deleteAccount.findViewById(R.id.buttonSubmit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (reviewRating == -1) {
+                    showMessage("Kindly rate the app!");
+                    return;
+                }
+                deleteAccount();
+                deleteAccount.dismiss();
+            }
+        });
+        deleteAccount.findViewById(R.id.buttonCancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteAccount.dismiss();
+            }
+        });
+      /*  new MaterialDialog.Builder(context)
                 .title("Delete Account")
                 .content("Are you sure you want to Delete Account?")
                 .positiveText("Yes")
@@ -371,24 +441,130 @@ public class PreferenceFragment extends Fragment implements View.OnClickListener
                         dialog.dismiss();
                     }
                 })
-                .show();
+                .show();*/
     }
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
         switch (compoundButton.getId()) {
             case R.id.switchbuttonVibration:
-                userSessionManager.setInAppVibration(b);
+                if (b) {
+                    updatePreference("1", "appvibration");
+                } else {
+                    updatePreference("0", "appvibration");
+                }
                 break;
             case R.id.switchbuttonEmail:
-                userSessionManager.setEmailNotification(b);
+                if (b) {
+                    updatePreference("1", "keepmail");
+                } else {
+                    updatePreference("0", "keepmail");
+                }
+
                 break;
             case R.id.switchbuttonMessage:
-                userSessionManager.setMessageNotification(b);
+                if (b) {
+                    updatePreference("1", "keepmessage");
+                } else {
+                    updatePreference("0", "keepmessage");
+                }
                 break;
+
             case R.id.switchbuttonLoop:
-                userSessionManager.setKeepMeInLoop(b);
+                if (b) {
+                    updatePreference("1", "keeploop");
+                } else {
+                    updatePreference("0", "keeploop");
+                }
+                break;
+
+            case R.id.radioDone:
+                if (b) {
+                    imageViewDone.setImageResource(R.drawable.ic_radio_checked);
+                    imageViewDontlike.setImageResource(R.drawable.ic_radio_uncheck);
+                    imageViewIrrelevant.setImageResource(R.drawable.ic_radio_uncheck);
+                    deleteReview = getString(R.string.appdone);
+                }
+                break;
+            case R.id.radioDidnotLike:
+                if (b) {
+                    imageViewDone.setImageResource(R.drawable.ic_radio_uncheck);
+                    imageViewDontlike.setImageResource(R.drawable.ic_radio_checked);
+                    imageViewIrrelevant.setImageResource(R.drawable.ic_radio_uncheck);
+                    deleteReview = getString(R.string.dontlike);
+                }
+                break;
+            case R.id.radioIrrelevent:
+                if (b) {
+                    imageViewDone.setImageResource(R.drawable.ic_radio_uncheck);
+                    imageViewDontlike.setImageResource(R.drawable.ic_radio_uncheck);
+                    imageViewIrrelevant.setImageResource(R.drawable.ic_radio_checked);
+                    deleteReview = getString(R.string.irrelevant);
+                }
                 break;
         }
+    }
+
+    private void updatePreference(String status, final String option) {
+        //  http://netforce.biz/tripesplit/mobileApp/api/services.php?opt=keeploop&user_id=1&status=1
+        progressDialog.show();
+        String baseUrl = getString(R.string.url);
+        String url = baseUrl + "services.php?opt=" + option;
+        Ion.with(context)
+                .load("POST", url)
+                .setBodyParameter("user_id", userSessionManager.getUserId())
+                .setBodyParameter("status", status)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        progressDialog.dismiss();
+                        // do stuff with the result or error
+                        if (result == null) {
+                        } else {
+                            if (result.get("status").getAsString().equalsIgnoreCase("success")) {
+                                JsonArray data=result.getAsJsonArray("data");
+                                JsonObject jsonObject=data.get(0).getAsJsonObject();
+                                switch (option){
+                                    case "keeploop":
+                                        String keeploop=jsonObject.get("keeploop").getAsString();
+                                        if(keeploop.equalsIgnoreCase("0")){
+                                            userSessionManager.setKeepMeInLoop(false);
+                                        }else {
+                                            userSessionManager.setKeepMeInLoop(true);
+                                        }
+                                        break;
+                                    case "keepmail":
+                                        String keepmail=jsonObject.get("keepmail").getAsString();
+                                        if(keepmail.equalsIgnoreCase("0")){
+                                            userSessionManager.setEmailNotification(false);
+                                        }else {
+                                            userSessionManager.setEmailNotification(true);
+                                        }
+                                        break;
+                                    case "keepmessage":
+                                        String keepmessage=jsonObject.get("keepmessage").getAsString();
+                                        if(keepmessage.equalsIgnoreCase("0")){
+                                            userSessionManager.setMessageNotification(false);
+                                        }else {
+                                            userSessionManager.setMessageNotification(true);
+                                        }
+                                        break;
+                                    case "appvibration":
+                                        String appvibration=jsonObject.get("appvibration").getAsString();
+                                        if(appvibration.equalsIgnoreCase("0")){
+                                            userSessionManager.setInAppVibration(false);
+                                        }else {
+                                            userSessionManager.setInAppVibration(true);
+                                        }
+                                        break;
+                                }
+                            } else {
+                                showMessage("Something went wrong");
+                            }
+                            Log.i("result", result.toString());
+                        }
+                    }
+                });
     }
 }

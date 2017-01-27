@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
@@ -63,6 +64,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             Manifest.permission.CAMERA, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE};
     private static final int PERMISSION_ALL = 1;
     private float reviewRating = -1;
+    FragmentManager fm;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_dashboard);
         // Initializing Toolbar and setting it as the actionbar
         context = this;
+        fm = getSupportFragmentManager();
         getPermission();
         userSessionManager = new UserSessionManager(context);
         if (!userSessionManager.getUserId().equalsIgnoreCase("")) {
@@ -518,6 +522,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                     }
                 });
 
+
     }
 
     private String getFormattedDob(String dob) {
@@ -535,10 +540,8 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onBackPressed() {
-        if (NavigationFragment.POSITION != 0) {
-            drawerLayout.closeDrawers();
-            drawer.setupHomeFragment();
-            NavigationFragment.POSITION = 0;
+        if (fm.getBackStackEntryCount() >1) {
+            fm.popBackStack();
         } else {
             ActivityCompat.finishAffinity(this);
             super.onBackPressed();

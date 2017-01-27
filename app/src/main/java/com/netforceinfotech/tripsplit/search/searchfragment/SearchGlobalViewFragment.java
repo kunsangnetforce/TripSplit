@@ -93,10 +93,13 @@ public class SearchGlobalViewFragment extends Fragment implements OnMapReadyCall
                 .tilt(30)                   // Sets the tilt of the camera to 30 degrees
                 .build();                   // Creates a CameraPosition from the builder
         mMapView = (MapView) view.findViewById(R.id.mapView);
+        try {
+            mMapView.onCreate(savedInstanceState);
 
-        mMapView.onCreate(savedInstanceState);
+            mMapView.onResume(); // needed to get the map to display immediately
 
-        mMapView.onResume(); // needed to get the map to display immediately
+        } catch (Exception e) {
+        }
 
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
@@ -216,16 +219,16 @@ public class SearchGlobalViewFragment extends Fragment implements OnMapReadyCall
                 if (!carDatas.contains(carData)) {
                     int height = 90;
                     int width = 70;
-                    if(type.equalsIgnoreCase("aeroplane")){
+                    if (type.equalsIgnoreCase("aeroplane")) {
                         bitmapdraw = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.ic_plane_marker);
 
-                    }else if(type.equalsIgnoreCase("car")){
+                    } else if (type.equalsIgnoreCase("car")) {
                         bitmapdraw = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.ic_car_marker);
 
-                    }else if(type.equalsIgnoreCase("bus")){
+                    } else if (type.equalsIgnoreCase("bus")) {
                         bitmapdraw = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.ic_bus_marker);
 
-                    }else {
+                    } else {
                         bitmapdraw = (BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.ic_ship_marker);
 
                     }
@@ -279,17 +282,18 @@ public class SearchGlobalViewFragment extends Fragment implements OnMapReadyCall
                         .radius(radiusDivideBy3 * 2 * 1000)
                         .strokeWidth(0f)
                         .fillColor(ContextCompat.getColor(context, R.color.grey_transparent)));
-                Circle circle=mMap.addCircle(new CircleOptions()
+                Circle circle = mMap.addCircle(new CircleOptions()
                         .center(searchLatLng)
                         .radius(radiusDivideBy3 * 3 * 1000)
                         .strokeWidth(0f)
                         .fillColor(ContextCompat.getColor(context, R.color.grey_transparent)));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(searchLatLng,  getZoomLevel(circle)));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(searchLatLng, getZoomLevel(circle)));
             }
         });
 
 
     }
+
     public int getZoomLevel(Circle circle) {
         int zoomLevel = 11;
         if (circle != null) {
@@ -299,6 +303,7 @@ public class SearchGlobalViewFragment extends Fragment implements OnMapReadyCall
         }
         return zoomLevel;
     }
+
     private void showMessage(String s) {
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }

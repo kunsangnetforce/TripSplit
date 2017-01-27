@@ -124,9 +124,14 @@ public class SearchFragment extends Fragment implements View.OnClickListener, Da
         context = getActivity();
         SELECTED_VIEW = LIST_VIEW;
         mMapView = (MapView) view.findViewById(R.id.mapView);
-        mMapView.onCreate(savedInstanceState);
+        try{
+            mMapView.onCreate(savedInstanceState);
 
-        mMapView.onResume(); // needed to get the map to display immediately
+            mMapView.onResume(); // needed to get the map to display immediately
+
+        }catch (Exception ex){
+
+        }
 
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());

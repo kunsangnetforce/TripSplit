@@ -43,6 +43,7 @@ import com.koushikdutta.ion.Ion;
 import com.mukesh.countrypicker.fragments.CountryPicker;
 import com.mukesh.countrypicker.interfaces.CountryPickerListener;
 import com.netforceinfotech.tripsplit.dashboard.DashboardActivity;
+import com.netforceinfotech.tripsplit.general.ImageFilePath;
 import com.netforceinfotech.tripsplit.home.HomeFragment;
 import com.netforceinfotech.tripsplit.R;
 import com.netforceinfotech.tripsplit.general.UserSessionManager;
@@ -63,6 +64,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import static com.netforceinfotech.tripsplit.R.id.etcountry;
+import static com.netforceinfotech.tripsplit.R.id.imageviewDP;
 
 public class EditPofileFragment extends Fragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
     View view;
@@ -631,8 +633,21 @@ public class EditPofileFragment extends Fragment implements View.OnClickListener
 
                     Uri uri = data.getData();
                     filePath = getPath(uri);
-                    Log.i("kresult", filePath);
-                    Glide.with(context).load(filePath).into(imageViewDp);
+                    if (filePath == null) {
+                        filePath = ImageFilePath.getPath(getActivity(), data.getData());
+                        if (filePath == null) {
+                            showMessage("File path still null :(");
+                            return;
+                        }
+                    }
+                    try {
+                        //  buttonAddImage.setText(filePath);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Glide.with(context).load(new File(filePath)).error(R.drawable.ic_error).into(imageViewDp);
+
+                    Log.i("result picture", "picked");
                 }
                 break;
         }

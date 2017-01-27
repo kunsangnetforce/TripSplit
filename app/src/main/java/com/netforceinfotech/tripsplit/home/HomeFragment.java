@@ -90,7 +90,8 @@ public class HomeFragment extends Fragment {
 
     private void replaceFragment(Fragment newFragment, String tag) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, newFragment, tag);
+        transaction.replace(R.id.frame, newFragment);
+        transaction.addToBackStack(tag);
         transaction.commit();
     }
 }

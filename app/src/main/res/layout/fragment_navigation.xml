@@ -82,9 +82,9 @@
                     hedgehog:starEmpty="@drawable/ic_star_outline"
                     hedgehog:starFill="@drawable/ic_star_full"
                     hedgehog:starHalf="@drawable/ic_half_star"
-                    hedgehog:starImageHeight="25dp"
-                    hedgehog:starImageWidth="25dp"
-                    hedgehog:starImagePadding="8dp"/>
+                    hedgehog:starImageHeight="30dp"
+                    hedgehog:starImageWidth="30dp"
+                    hedgehog:starImagePadding="6dp"/>
             </LinearLayout>
 
         </LinearLayout>

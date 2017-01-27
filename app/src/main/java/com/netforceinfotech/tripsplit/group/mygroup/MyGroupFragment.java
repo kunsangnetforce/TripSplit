@@ -53,7 +53,6 @@ public class MyGroupFragment extends Fragment {
         userSessionManager = new UserSessionManager(context);
         setupRecyclerView(view);
         initView(view);
-        setupFirebase();
         //setupData();
         return view;
     }
@@ -67,25 +66,30 @@ public class MyGroupFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setupFirebase();
+    }
+
     private void setupFirebase() {
         progressDialog.show();
         FirebaseDatabase _root = FirebaseDatabase.getInstance();
         _user_group = _root.getReference().child("user_group");
-        _user_group.addValueEventListener(new ValueEventListener() {
+
+        _user_group.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 progressDialog.dismiss();
-                Log.i("userid", userSessionManager.getUserId() + "");
                 if (dataSnapshot.hasChild(userSessionManager.getUserId())) {
                     // run some code
                     linearlayoutNoGroup.setVisibility(View.GONE);
                     DatabaseReference _user_id = _user_group.child(userSessionManager.getUserId());
-                    _user_id.addChildEventListener(new ChildEventListener() {
+                   /* _user_id.addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                             if (dataSnapshot.child("timestamp").getValue(Long.class) != null) {
-                                appendGroup(dataSnapshot);
                             }
                         }
 
@@ -108,6 +112,17 @@ public class MyGroupFragment extends Fragment {
                         public void onCancelled(DatabaseError databaseError) {
 
                         }
+                    });*/
+                    _user_id.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            appendGroup(dataSnapshot);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
                     });
 
                 } else {
@@ -123,63 +138,37 @@ public class MyGroupFragment extends Fragment {
 
     }
 
-    private void appendGroup(DataSnapshot dataSnapshot) {
+    private void appendGroup(DataSnapshot dataSnapshot1) {
 
-        try {
-            Log.i("datasnapshot", dataSnapshot.toString());
-            String category = dataSnapshot.child("category").getValue(String.class);
-            String city = dataSnapshot.child("city").getValue(String.class);
-            String country = dataSnapshot.child("country").getValue(String.class);
-            String image_url = dataSnapshot.child("image_url").getValue(String.class);
-            Long timestamp = dataSnapshot.child("timestamp").getValue(Long.class);
-            String user_id = dataSnapshot.child("user_id").getValue(String.class);
-            String key = dataSnapshot.getKey();
-            String title = dataSnapshot.child("title").getValue(String.class);
-            MyData myData = new MyData(category, city, country, image_url, user_id, key, title, timestamp);
-            if (!myDatas.contains(myData)) {
-                Log.i("timestmap", timestamp + "");
-                myDatas.add(myData);
+        Log.i("datasnapshot", dataSnapshot1.toString());
+
+        for (DataSnapshot dataSnapshot : dataSnapshot1.getChildren()) {
+            try {
+
+
+                String category = dataSnapshot.child("category").getValue(String.class);
+                String city = dataSnapshot.child("city").getValue(String.class);
+                String country = dataSnapshot.child("country").getValue(String.class);
+                String image_url = dataSnapshot.child("image_url").getValue(String.class);
+                Long timestamp = dataSnapshot.child("timestamp").getValue(Long.class);
+                String user_id = dataSnapshot.child("user_id").getValue(String.class);
+                String key = dataSnapshot.getKey();
+                String title = dataSnapshot.child("title").getValue(String.class);
+                MyData myData = new MyData(category, city, country, image_url, user_id, key, title, timestamp);
+                if (!myDatas.contains(myData)) {
+                    Log.i("timestmap", timestamp + "");
+                    myDatas.add(myData);
+                }
+                Log.i("imageurl",image_url);
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-            myAdapter.notifyDataSetChanged();
-            recyclerView.smoothScrollToPosition(myDatas.size());
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
+        myAdapter.notifyDataSetChanged();
+        recyclerView.smoothScrollToPosition(myDatas.size());
 
     }
 
-    /*private void setupData() {
-        MyData myData = new MyData("", "Test1", "Kunsang", "test message", "Sun 23 Nov 2016 15:13", "12");
-        if (!myDatas.contains(myData)) {
-            myDatas.add(myData);
-        }
-        MyData myData1 = new MyData("", "Test1", "Kunsang", "test message", "Sun 23 Nov 2016 15:13", "13");
-        if (!myDatas.contains(myData)) {
-            myDatas.add(myData);
-        }
-        MyData myData2 = new MyData("", "Test1", "Kunsang", "test message", "Sun 23 Nov 2016 15:13", "14");
-        if (!myDatas.contains(myData)) {
-            myDatas.add(myData);
-        }
-        MyData myData3 = new MyData("", "Test1", "Kunsang", "test message", "Sun 23 Nov 2016 15:13", "15");
-        if (!myDatas.contains(myData)) {
-            myDatas.add(myData);
-        }
-        MyData myData4 = new MyData("", "Test1", "Kunsang", "test message", "Sun 23 Nov 2016 15:13", "16");
-        if (!myDatas.contains(myData)) {
-            myDatas.add(myData);
-        }
-        MyData myData5 = new MyData("", "Test1", "Kunsang", "test message", "Sun 23 Nov 2016 15:13", "17");
-        if (!myDatas.contains(myData)) {
-            myDatas.add(myData);
-        }
-        MyData myData6 = new MyData("", "Test1", "Kunsang", "test message", "Sun 23 Nov 2016 15:13", "18");
-        if (!myDatas.contains(myData)) {
-            myDatas.add(myData);
-        }
-        myAdapter.notifyDataSetChanged();
-
-    }*/
 
     private void setupRecyclerView(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerMyGroup);

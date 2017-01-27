@@ -202,6 +202,12 @@ public class TypeFragment extends Fragment implements View.OnClickListener, Time
         editTextTotalCost = (EditText) view.findViewById(R.id.et_totalCost);
         editTextItenarary = (EditText) view.findViewById(R.id.et_itenarary);
         editTextVehicleType = (EditText) view.findViewById(R.id.et_vehicleType);
+        if(type.equalsIgnoreCase("car")){
+            editTextVehicleType.setText("Vehicle Type");
+        }else {
+            editTextVehicleType.setText("Travelling With");
+
+        }
         linearLayoutReturn = (LinearLayout) view.findViewById(R.id.linearlayoutReturn);
         textViewReturnETA = (TextView) view.findViewById(R.id.textviewReturnETA);
         textViewReturnETD = (TextView) view.findViewById(R.id.textviewReturnETD);

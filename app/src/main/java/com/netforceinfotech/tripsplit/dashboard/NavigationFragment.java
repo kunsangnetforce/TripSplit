@@ -128,11 +128,46 @@ public class NavigationFragment extends Fragment implements RecyclerAdapterDrawe
             userSessionManager.setName(name);
             String dob = jsonObject.get("dob").getAsString();
             String country = jsonObject.get("country").getAsString();
+            /**
+             *  "keeploop": "1",
+             "keepmail": "1",
+             "keepmessage": "1",
+             "appvibration": "1",
+             *
+             */
+        try {
+            String keeploop=jsonObject.get("keeploop").getAsString();
+            String keepmail=jsonObject.get("keepmail").getAsString();
+            String keepmessage=jsonObject.get("keepmessage").getAsString();
+            String appvibration=jsonObject.get("appvibration").getAsString();
+            if(keeploop.equalsIgnoreCase("1")){
+                userSessionManager.setKeepMeInLoop(true);
+            }else {
+                userSessionManager.setKeepMeInLoop(false);
+            }
+            if(keepmail.equalsIgnoreCase("1")){
+                userSessionManager.setEmailNotification(true);
+            }else {
+                userSessionManager.setEmailNotification(false);
+            }if(keepmessage.equalsIgnoreCase("1")){
+                userSessionManager.setMessageNotification(true);
+            }else {
+                userSessionManager.setMessageNotification(false);
+            }if(appvibration.equalsIgnoreCase("1")){
+                userSessionManager.setInAppVibration(true);
+            }else {
+                userSessionManager.setInAppVibration(false);
+            }
+        }catch (Exception ex){
+
+        }
+
+
             String rating;
             try {
                 rating = jsonObject.get("rating").getAsString();
             } catch (Exception ex) {
-                rating = "3";
+                rating = "0";
             }
 
             String country_code = jsonObject.get("country_code").getAsString();
@@ -460,7 +495,8 @@ public class NavigationFragment extends Fragment implements RecyclerAdapterDrawe
 
     private void replaceFragment(Fragment newFragment, String tag) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, newFragment, tag);
+        transaction.replace(R.id.frame, newFragment);
+        transaction.addToBackStack(tag);
         transaction.commit();
     }
 

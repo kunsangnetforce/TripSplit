@@ -359,11 +359,12 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void setupFirebase(final String group_id, final String image) {
+
         _user_group = FirebaseDatabase.getInstance().getReference().child("user_group");
         _user_group.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(userSessionManager.getUserId())) {
+                if (!dataSnapshot.hasChild(userSessionManager.getUserId())) {
                     createUserChild(dataSnapshot, group_id, image);
                 } else {
                     insertGrouptoUser(dataSnapshot, group_id, image);

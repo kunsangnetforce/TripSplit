@@ -83,7 +83,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         myHolder.textViewDestination.setText(dataObject.destination);
         myHolder.textViewItenerary.setText(dataObject.itinerary);
         myHolder.textViewSource.setText(dataObject.source);
-        Glide.with(context).load(dataObject.image).error(R.drawable.ic_picture_box).into(myHolder.imageView);
+        Glide.with(context).load(dataObject.image).error(R.drawable.ic_picture_box).placeholder(R.drawable.ic_picture_box).into(myHolder.imageView);
         myHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,8 +59,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         myHolder.textViewCity.setText(itemList.get(position).city);
         myHolder.textViewCategory.setText(itemList.get(position).category);
         try {
-            Glide.with(context).load(itemList.get(position).image_url).error(R.drawable.ic_error).into(myHolder.imageView);
-        }catch (Exception ex){
+            Log.i("resultimage",itemList.get(position).image_url);
+            Glide.with(context).load(itemList.get(position).image_url).placeholder(R.drawable.ic_picture_box).error(R.drawable.ic_picture_box).into(myHolder.imageView);
+        } catch (Exception ex) {
 
         }
         myHolder.view.setOnClickListener(new View.OnClickListener() {
